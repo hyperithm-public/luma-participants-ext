@@ -1,0 +1,339 @@
+/* Luma 참가자 목록 확장 프로그램 스타일 */
+
+/* 플로팅 버튼 - Glassmorphism + Gradient */
+#luma-participants-btn {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 999999;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow:
+    0 8px 32px rgba(102, 126, 234, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#luma-participants-btn:hover {
+  transform: translateY(-3px) scale(1.1);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%);
+  box-shadow:
+    0 12px 40px rgba(102, 126, 234, 0.45),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+#luma-participants-btn:active {
+  transform: translateY(0) scale(0.95);
+  box-shadow:
+    0 4px 20px rgba(102, 126, 234, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* 모달 오버레이 */
+#luma-participants-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 9999999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#luma-participants-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* 모달 컨테이너 */
+#luma-participants-modal {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 1000px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: modalSlideIn 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 모달 헤더 */
+.luma-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.luma-modal-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.luma-modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.luma-modal-close:hover {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+/* 액션 버튼 영역 */
+.luma-modal-actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px 24px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.luma-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.luma-btn-copy {
+  background: #3b82f6;
+  color: white;
+}
+
+.luma-btn-copy:hover {
+  background: #2563eb;
+}
+
+.luma-btn-download {
+  background: #10b981;
+  color: white;
+}
+
+.luma-btn-download:hover {
+  background: #059669;
+}
+
+/* 모달 컨텐츠 */
+.luma-modal-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+}
+
+/* 로딩 상태 */
+.luma-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.luma-loading::before {
+  content: '';
+  width: 24px;
+  height: 24px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 에러 및 빈 상태 */
+.luma-error,
+.luma-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  color: #6b7280;
+  font-size: 16px;
+  text-align: center;
+}
+
+.luma-error {
+  color: #ef4444;
+}
+
+/* 테이블 */
+.luma-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.luma-table thead {
+  background: #f9fafb;
+  position: sticky;
+  top: 0;
+}
+
+.luma-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.luma-table td {
+  padding: 14px 16px;
+  color: #4b5563;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: top;
+}
+
+.luma-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.luma-table a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.luma-table a:hover {
+  text-decoration: underline;
+}
+
+.luma-bio-cell {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.luma-bio-cell:hover {
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* 토스트 메시지 */
+.luma-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1f2937;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 99999999;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.luma-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  #luma-participants-btn {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  #luma-participants-modal {
+    width: 95%;
+    max-height: 90vh;
+    border-radius: 12px;
+  }
+
+  .luma-modal-header {
+    padding: 16px 20px;
+  }
+
+  .luma-modal-title {
+    font-size: 18px;
+  }
+
+  .luma-modal-actions {
+    padding: 12px 20px;
+    flex-wrap: wrap;
+  }
+
+  .luma-btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .luma-table th,
+  .luma-table td {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .luma-bio-cell {
+    max-width: 150px;
+  }
+}

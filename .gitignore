@@ -1,0 +1,12 @@
+# API 요청 참조 파일 (민감한 쿠키 정보 포함)
+network-reqs/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
