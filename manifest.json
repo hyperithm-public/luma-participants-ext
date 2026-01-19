@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Luma 참가자 목록",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Luma 이벤트 참가자 목록을 테이블로 보고 CSV로 다운로드",
   "permissions": ["activeTab"],
   "host_permissions": [
@@ -16,6 +16,12 @@
       "js": ["content.js"],
       "css": ["styles.css"],
       "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["luma-icon.png"],
+      "matches": ["https://luma.com/*", "https://lu.ma/*"]
     }
   ],
   "icons": {

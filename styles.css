@@ -1,6 +1,6 @@
-/* Luma 참가자 목록 확장 프로그램 스타일 */
+/* Luma 참가자 목록 확장 프로그램 스타일 - Glassmorphism */
 
-/* 플로팅 버튼 - Glassmorphism + Gradient */
+/* 플로팅 버튼 */
 #luma-participants-btn {
   position: fixed;
   top: 100px;
@@ -12,34 +12,35 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 50%;
-  font-size: 24px;
   cursor: pointer;
   box-shadow:
-    0 8px 32px rgba(102, 126, 234, 0.3),
+    0 8px 32px rgba(102, 126, 234, 0.35),
     inset 0 1px 1px rgba(255, 255, 255, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.luma-btn-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
 #luma-participants-btn:hover {
-  transform: translateY(-3px) scale(1.1);
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.85) 0%, rgba(118, 75, 162, 0.85) 100%);
+  transform: translateY(-3px) scale(1.08);
   box-shadow:
-    0 12px 40px rgba(102, 126, 234, 0.45),
+    0 12px 40px rgba(102, 126, 234, 0.5),
     inset 0 1px 1px rgba(255, 255, 255, 0.4);
-  border-color: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 #luma-participants-btn:active {
   transform: translateY(0) scale(0.95);
-  box-shadow:
-    0 4px 20px rgba(102, 126, 234, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 /* 모달 오버레이 */
@@ -49,8 +50,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
+  background: rgba(15, 15, 35, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 9999999;
   display: none;
   justify-content: center;
@@ -64,24 +66,30 @@
   opacity: 1;
 }
 
-/* 모달 컨테이너 */
+/* 모달 컨테이너 - Glassmorphism */
 #luma-participants-modal {
-  background: white;
-  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
   width: 90%;
   max-width: 1000px;
   max-height: 85vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  animation: modalSlideIn 0.3s ease;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
 }
 
 @keyframes modalSlideIn {
   from {
     opacity: 0;
-    transform: translateY(-20px) scale(0.95);
+    transform: translateY(-30px) scale(0.9);
   }
   to {
     opacity: 1;
@@ -94,76 +102,85 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .luma-modal-title {
   margin: 0;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  color: #1f2937;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .luma-modal-close {
-  background: none;
-  border: none;
-  font-size: 28px;
-  color: #9ca3af;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   padding: 0;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 12px;
   transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
 }
 
 .luma-modal-close:hover {
-  background: #f3f4f6;
-  color: #4b5563;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: rotate(90deg);
 }
 
 /* 액션 버튼 영역 */
 .luma-modal-actions {
   display: flex;
   gap: 12px;
-  padding: 16px 24px;
-  background: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 20px 28px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .luma-btn {
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  border: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  backdrop-filter: blur(4px);
 }
 
 .luma-btn-copy {
-  background: #3b82f6;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.6) 0%, rgba(37, 99, 235, 0.6) 100%);
   color: white;
 }
 
 .luma-btn-copy:hover {
-  background: #2563eb;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.85) 0%, rgba(37, 99, 235, 0.85) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
 }
 
 .luma-btn-download {
-  background: #10b981;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.6) 0%, rgba(5, 150, 105, 0.6) 100%);
   color: white;
 }
 
 .luma-btn-download:hover {
-  background: #059669;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.85) 0%, rgba(5, 150, 105, 0.85) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
 }
 
 /* 모달 컨텐츠 */
@@ -171,6 +188,25 @@
   flex: 1;
   overflow-y: auto;
   padding: 0;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* 스크롤바 스타일 */
+.luma-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.luma-modal-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.luma-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.luma-modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* 로딩 상태 */
@@ -178,20 +214,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
-  color: #6b7280;
+  padding: 80px 20px;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 16px;
 }
 
 .luma-loading::before {
   content: '';
-  width: 24px;
-  height: 24px;
-  border: 3px solid #e5e7eb;
-  border-top-color: #667eea;
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-top-color: rgba(102, 126, 234, 0.8);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
-  margin-right: 12px;
+  margin-right: 14px;
 }
 
 @keyframes spin {
@@ -204,14 +240,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
-  color: #6b7280;
+  padding: 80px 20px;
+  color: rgba(255, 255, 255, 0.6);
   font-size: 16px;
   text-align: center;
 }
 
 .luma-error {
-  color: #ef4444;
+  color: rgba(239, 68, 68, 0.9);
 }
 
 /* 테이블 */
@@ -222,37 +258,47 @@
 }
 
 .luma-table thead {
-  background: #f9fafb;
+  background: rgba(102, 126, 234, 0.15);
   position: sticky;
   top: 0;
+  backdrop-filter: blur(8px);
 }
 
 .luma-table th {
-  padding: 14px 16px;
+  padding: 16px 18px;
   text-align: left;
   font-weight: 600;
-  color: #374151;
-  border-bottom: 2px solid #e5e7eb;
+  color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   white-space: nowrap;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
 }
 
 .luma-table td {
-  padding: 14px 16px;
-  color: #4b5563;
-  border-bottom: 1px solid #f3f4f6;
+  padding: 16px 18px;
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   vertical-align: top;
 }
 
+.luma-table tbody tr {
+  transition: all 0.2s ease;
+}
+
 .luma-table tbody tr:hover {
-  background: #f9fafb;
+  background: rgba(102, 126, 234, 0.1);
 }
 
 .luma-table a {
-  color: #3b82f6;
+  color: rgba(147, 197, 253, 0.9);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .luma-table a:hover {
+  color: #93c5fd;
   text-decoration: underline;
 }
 
@@ -261,6 +307,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .luma-bio-cell:hover {
@@ -274,16 +321,18 @@
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
-  background: #1f2937;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
+  backdrop-filter: blur(12px);
   color: white;
-  padding: 14px 28px;
-  border-radius: 10px;
+  padding: 16px 32px;
+  border-radius: 14px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 99999999;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -298,19 +347,23 @@
     top: auto;
     bottom: 20px;
     right: 20px;
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .luma-btn-icon {
+    width: 28px;
+    height: 28px;
   }
 
   #luma-participants-modal {
     width: 95%;
     max-height: 90vh;
-    border-radius: 12px;
+    border-radius: 20px;
   }
 
   .luma-modal-header {
-    padding: 16px 20px;
+    padding: 20px 22px;
   }
 
   .luma-modal-title {
@@ -318,18 +371,19 @@
   }
 
   .luma-modal-actions {
-    padding: 12px 20px;
+    padding: 16px 22px;
     flex-wrap: wrap;
   }
 
   .luma-btn {
     flex: 1;
     justify-content: center;
+    padding: 12px 16px;
   }
 
   .luma-table th,
   .luma-table td {
-    padding: 12px;
+    padding: 14px 12px;
     font-size: 13px;
   }
 

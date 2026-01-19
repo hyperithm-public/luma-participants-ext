@@ -179,7 +179,8 @@
   function createFloatingButton() {
     const button = document.createElement('button');
     button.id = 'luma-participants-btn';
-    button.innerHTML = '👥';
+    const iconUrl = chrome.runtime.getURL('luma-icon.png');
+    button.innerHTML = `<img src="${iconUrl}" alt="${UI_TEXT.buttonLabel}" class="luma-btn-icon">`;
     button.title = UI_TEXT.buttonLabel;
     button.addEventListener('click', openModal);
     document.body.appendChild(button);
